@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CZA INVESTMENTS</title>
+
+    <link
+        rel="stylesheet"
+        href="index.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- FUNDO -->
+
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+
+        <div id="particles"></div>
+
+    </div>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="hero">
+
+        <div class="hero-content">
+
+            <div class="logo">
+                CZA INVESTMENTS
+            </div>
+
+
+            <div class="badge">
+                INVESTA NO SEU FUTURO
+            </div>
+
+
+            <h1>
+                Seu futuro começa
+                <span>com uma decisão.</span>
+            </h1>
+
+
+            <p>
+                Transforme seus objetivos em planos.
+                Comece sua jornada de investimentos
+                com a CZA Investments.
+            </p>
+
+
+            <div class="buttons">
+
+                <a
+                    href="login.html"
+                    class="primary-button"
+                >
+                    Começar a investir
+
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="hero-info">
+
+                <div>
+                    <strong>01</strong>
+                    <span>Comece</span>
+                </div>
+
+                <div>
+                    <strong>02</strong>
+                    <span>Planeje</span>
+                </div>
+
+                <div>
+                    <strong>03</strong>
+                    <span>Invista</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ASSINATURA -->
+
+    <div class="signature">
+        by. <strong>Davi Cesar</strong>
+    </div>
+
+
+    <script>
+
+        /* =========================
+           MOVIMENTO DOS ORBS
+        ========================= */
+
+        const orbs = [
+
+            document.querySelector(".orb-one"),
+            document.querySelector(".orb-two"),
+            document.querySelector(".orb-three")
+
+        ];
+
+
+        window.addEventListener(
+            "mousemove",
+            (event) => {
+
+                const x =
+                    event.clientX /
+                    window.innerWidth - 0.5;
+
+                const y =
+                    event.clientY /
+                    window.innerHeight - 0.5;
+
+
+                orbs[0].style.transform =
+                    `translate(${x * 55}px, ${y * 45}px)`;
+
+
+                orbs[1].style.transform =
+                    `translate(${x * -65}px, ${y * -45}px)`;
+
+
+                orbs[2].style.transform =
+                    `translate(${x * 40}px, ${y * -55}px)`;
+
+            }
+        );
+
+
+        /* =========================
+           PARTICULAS
+        ========================= */
+
+        const particles =
+            document.getElementById("particles");
+
+
+        for (let i = 0; i < 60; i++) {
+
+            const particle =
+                document.createElement("div");
+
+
+            particle.className =
+                "particle";
+
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+
+            particle.style.top =
+                Math.random() * 100 + "%";
+
+
+            particle.style.animationDuration =
+                (5 + Math.random() * 10) + "s";
+
+
+            particle.style.animationDelay =
+                Math.random() * 8 + "s";
+
+
+            particles.appendChild(
+                particle
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

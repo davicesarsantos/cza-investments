@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CZR — Login</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <!-- Fundo -->
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="orb orb-three"></div>
+
+        <div id="particles"></div>
+
+    </div>
+
+
+    <!-- Login -->
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <!-- Logo -->
+            <div class="logo">
+                CZR INVESTIMENTOS
+            </div>
+
+            <h1>Bem-vindo de volta</h1>
+
+            <p class="subtitle">
+                Entre na sua conta para continuar.
+            </p>
+
+
+            <form id="loginForm">
+
+                <!-- E-mail -->
+                <div class="input-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="seu@email.com"
+                        >
+
+                    </div>
+
+                    <small id="emailError"></small>
+
+                </div>
+
+
+                <!-- Senha -->
+                <div class="input-group">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="11" width="18" height="10" rx="2"/>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Digite sua senha"
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="password-toggle"
+                        >
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+
+                        </button>
+
+                    </div>
+
+                    <small id="passwordError"></small>
+
+                </div>
+
+
+                <!-- Opções -->
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input type="checkbox">
+
+                        <span></span>
+
+                        Lembrar de mim
+
+                    </label>
+
+                    <a href="#">
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <!-- Botão -->
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="loginButton"
+                >
+
+                    <span class="button-text">
+                        Entrar
+                    </span>
+
+                    <span class="loader"></span>
+
+                </button>
+
+
+                <div
+                    id="message"
+                    class="message"
+                ></div>
+
+            </form>
+
+
+            <!-- Cadastro -->
+            <div class="register">
+
+                Ainda não tem uma conta?
+
+                <a href="#" id="registerLink">
+                    Criar conta
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Assinatura -->
+    <div class="signature">
+        by. <strong>Davi Cesar</strong>
+    </div>
+
+
+    <script>
+
+        /* =========================
+           MOVIMENTO DO FUNDO
+        ========================= */
+
+        const orbs = [
+            document.querySelector(".orb-one"),
+            document.querySelector(".orb-two"),
+            document.querySelector(".orb-three")
+        ];
+
+        window.addEventListener("mousemove", (event) => {
+
+            const x =
+                event.clientX / window.innerWidth - 0.5;
+
+            const y =
+                event.clientY / window.innerHeight - 0.5;
+
+            orbs[0].style.transform =
+                `translate(${x * 55}px, ${y * 45}px)`;
+
+            orbs[1].style.transform =
+                `translate(${x * -65}px, ${y * -45}px)`;
+
+            orbs[2].style.transform =
+                `translate(${x * 40}px, ${y * -55}px)`;
+
+        });
+
+
+        /* =========================
+           PARTICULAS
+        ========================= */
+
+        const particles =
+            document.getElementById("particles");
+
+        for (let i = 0; i < 55; i++) {
+
+            const particle =
+                document.createElement("div");
+
+            particle.className = "particle";
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.top =
+                Math.random() * 100 + "%";
+
+            particle.style.animationDuration =
+                (5 + Math.random() * 10) + "s";
+
+            particle.style.animationDelay =
+                Math.random() * 8 + "s";
+
+            particles.appendChild(particle);
+        }
+
+
+        /* =========================
+           MOSTRAR SENHA
+        ========================= */
+
+        const password =
+            document.getElementById("password");
+
+        const togglePassword =
+            document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", () => {
+
+            password.type =
+                password.type === "password"
+                    ? "text"
+                    : "password";
+
+        });
+
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        const form =
+            document.getElementById("loginForm");
+
+        const email =
+            document.getElementById("email");
+
+        const emailError =
+            document.getElementById("emailError");
+
+        const passwordError =
+            document.getElementById("passwordError");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const message =
+            document.getElementById("message");
+
+
+        form.addEventListener("submit", (event) => {
+
+            event.preventDefault();
+
+            emailError.textContent = "";
+            passwordError.textContent = "";
+
+            message.textContent = "";
+            message.className = "message";
+
+            let valid = true;
+
+
+            const emailRegex =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (!email.value.trim()) {
+
+                emailError.textContent =
+                    "Digite seu e-mail.";
+
+                valid = false;
+
+            } else if (!emailRegex.test(email.value)) {
+
+                emailError.textContent =
+                    "Digite um e-mail válido.";
+
+                valid = false;
+
+            }
+
+
+            if (!password.value.trim()) {
+
+                passwordError.textContent =
+                    "Digite sua senha.";
+
+                valid = false;
+
+            } else if (password.value.length < 6) {
+
+                passwordError.textContent =
+                    "A senha deve ter pelo menos 6 caracteres.";
+
+                valid = false;
+
+            }
+
+
+            if (!valid) return;
+
+
+            loginButton.classList.add("loading");
+
+
+            setTimeout(() => {
+
+                loginButton.classList.remove("loading");
+
+                message.textContent =
+                    "Login realizado com sucesso.";
+
+                message.classList.add("success");
+
+            }, 1200);
+
+        });
+
+
+        /* =========================
+           CADASTRO
+        ========================= */
+
+        document
+            .getElementById("registerLink")
+            .addEventListener("click", (event) => {
+
+                event.preventDefault();
+
+                message.textContent =
+                    "A página de cadastro será criada em breve.";
+
+                message.className =
+                    "message success";
+
+            });
+
+    </script>
+
+</body>
+</html><div class="logo">
